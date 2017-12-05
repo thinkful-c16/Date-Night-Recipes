@@ -14,8 +14,10 @@
 <body>
 	<h2>API Client</h2>
 	<ul id="nav">
-		<li> </li><a href="" class="viewSearch">List</a> |
-		<li> </li><a href="" class="viewCreate">Create</a>
+		<li> </li>
+		<a href="" class="viewSearch">List</a> |
+		<li> </li>
+		<a href="" class="viewCreate">Create</a>
 	</ul>
 
 	<form id="search" class="view">
@@ -27,13 +29,26 @@
 		<fieldset>
 			<legend>Detail</legend>
 			<div>
-				<label for="title">Title</label>
+				<label for="title">Movie Title</label>
 				<span class="title"></span>
+			</div>
+			<div>
+				<label for="restaurant">Restaurant</label>
+				<span class="restaurant"></span>
 			</div>
 			<div>
 				<label for="comment">Comment</label>
 				<span class="comment"></span>
-			</div>			
+			</div>
+
+			<form id="edit">
+				<div>
+					<label for="comment">Comment</label>
+					<textarea rows="4" cols="50" name="comment"></textarea>
+				</div>
+				<button type="submit">Submit</button>
+			</form>
+
 			<a href="" class="edit">Edit</a>
 			<a href="" class="remove">Remove</a>
 		</fieldset>
@@ -75,4 +90,5 @@
 	<script src="js/fetch.js"></script>
 	<script src="js/app.js"></script>
 </body>
+
 </html>

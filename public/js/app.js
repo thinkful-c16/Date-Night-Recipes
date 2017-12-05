@@ -34,6 +34,8 @@ const renderDetail = function (store) {
   const item = store.item;
   el.find('.title').text(item.Title);
   el.find('.comment').text(item.comment);
+  el.find('.restaurant').text(item.restaurantName);
+  el.find('[name=comment]').val(item.comment);
 };
 
 const handleSearch = function (event) {
@@ -87,10 +89,10 @@ const handleUpdate = function (event) {
 
   const document = {
     id: store.item.id,
-    title: el.find('[name=title]').val(),
-    content: el.find('[name=content]').val()
+    comment: el.find('[name=comment]').val(),
+    rating: 'hot'
   };
-  api.update(document, store.token)
+  api.update(document)
     .then(response => {
       store.item = response;
       store.list = null; //invalidate cached list results
