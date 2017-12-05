@@ -1,6 +1,9 @@
 'use strict';
 
 const express = require('express');
+const data = require('./seed-data');
+
+console.log(data)
 
 const app = express();
 
