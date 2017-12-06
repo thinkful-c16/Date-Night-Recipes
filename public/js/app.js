@@ -1,7 +1,8 @@
 /* global jQuery, handle, $, api */
 'use strict';
 
-const ITEMS_URL = '/recipes';
+//const ITEMS_URL = '/movies';
+const MOVIES_URL = '/movies';
 
 const renderPage = function (store) {
   if (store.demo) {
@@ -14,10 +15,12 @@ const renderPage = function (store) {
 };
 
 const renderResults = function (store) {
+  //console.log(store);
   const listItems = store.list.map((item) => {
+  // console.log(item.title);
     return `<li id="${item.id}">
-                <a href="${item.url}" class="detail">${item.Title}</a>
-              </li>`;
+                <a href="${item.id}" class="detail">${item.title}</a>
+            </li>`;
   });
   $('#result').empty().append('<ul>').find('ul').append(listItems);
 };
@@ -32,10 +35,24 @@ const renderEdit = function (store) {
 const renderDetail = function (store) {
   const el = $('#detail');
   const item = store.item;
-  el.find('.title').text(item.Title);
-  el.find('.comment').text(item.comment);
-  el.find('.restaurant').text(item.restaurantName);
-  el.find('[name=comment]').val(item.comment);
+  //make a call to Yelp with zip and cuisine
+  const searchZip = '30080';
+  const searchCuisine = item.pairedCuisine;
+  const searchString = `https://api.yelp.com/v3/businesses/search?location=${searchZip}&term=${searchCuisine}`;
+  //console.log(searchZip, searchCuisine);
+  
+  $.ajax({
+    method: 'GET',
+    url: `http://localhost:8080/yelp/search?zip=${searchZip}&cuisine=${searchCuisine}`
+  } )
+    .done(function(response) {
+      console.log(response);
+    })
+    .fail(function() {
+      console.log( 'error' );
+    });
+
+  el.find('.title').text(item.title);
 };
 
 const handleSearch = function (event) {
@@ -171,6 +188,7 @@ jQuery(function ($) {
     list: null,         // search result - array of objects (documents)
     item: null,         // currently selected document
   };
+
 
   $('#create').on('submit', STORE, handleCreate);
   $('#search').on('submit', STORE, handleSearch);

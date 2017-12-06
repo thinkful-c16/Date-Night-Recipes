@@ -39,7 +39,7 @@ function normalizeResponseErrors(res) {
 
 var api = {
   search: function (query) {
-    const url = buildUrl(ITEMS_URL, query);
+    const url = buildUrl(MOVIES_URL, query);
 
     return fetch(url, {
       method: 'GET',
@@ -50,7 +50,7 @@ var api = {
       .then(res => res.json());
   },
   details: function (id) {
-    const url = buildUrl(`${ITEMS_URL}/${id}`);
+    const url = buildUrl(`${MOVIES_URL}/${id}`);
 
     return fetch(url, {
       method: 'GET',
@@ -61,7 +61,7 @@ var api = {
       .then(res => res.json());
   },
   create: function (document) {
-    const url = buildUrl(`${ITEMS_URL}`);
+    const url = buildUrl(`${MOVIES_URL}`);
 
     return fetch(url, {
       method: 'POST',
@@ -74,7 +74,7 @@ var api = {
       .then(res => res.json());
   },  
   update: function (document) {
-    const url = buildUrl(`${ITEMS_URL}/${document.id}`);
+    const url = buildUrl(`${MOVIES_URL}/${document.id}`);
     
     console.log('dev tools', document);
 
@@ -89,7 +89,7 @@ var api = {
       .then(res => res.json());
   },
   remove: function (id) {
-    const url = buildUrl(`${ITEMS_URL}/${id}`);
+    const url = buildUrl(`${MOVIES_URL}/${id}`);
 
     return fetch(url, {
       method: 'DELETE',
