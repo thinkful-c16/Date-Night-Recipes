@@ -1,0 +1,24 @@
+[
+    {
+        "id": 0,
+        "zip": "30080",
+        "email": "nicciwill@gmail.com",
+        "firstName": "Nicci",
+        "moviesId": "0",
+        "restaurantId": "tacos-la-villa-smyrna",
+        "dateNight": "2017-11-13",
+        "rating": "cold",
+        "ratingComment": "Meh"
+    },
+    {
+        "id": 1,
+        "zip": "48532",
+        "email": "mastergameraj@gmail.com",
+        "firstName": "Anthony",
+        "moviesId": "13",
+        "restaurantId": "bongiornos-pizza-flint",
+        "dateNight": "2017-10-1",
+        "rating": "hot",
+        "ratingComment": "Loved it"
+    }
+]

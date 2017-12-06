@@ -49,7 +49,7 @@ const handleSearch = function (event) {
       title: el.find('[name=title]').val()
     };
   }
-  api.search(query)
+  api.search(query)       
     .then(response => {
       store.list = response;
       renderResults(store);
@@ -92,7 +92,7 @@ const handleUpdate = function (event) {
     comment: el.find('[name=comment]').val(),
     rating: 'hot'
   };
-  api.update(document)
+  api.update(document)      //this refers to the method created fetch.js (line 76)
     .then(response => {
       store.item = response;
       store.list = null; //invalidate cached list results
