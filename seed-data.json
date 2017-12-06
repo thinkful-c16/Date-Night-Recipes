@@ -8,7 +8,8 @@
         "plot": "Chronicles the experiences of a formerly successful banker as a prisoner in the gloomy jailhouse of Shawshank after being found guilty of a crime he did not commit. The film portrays the man\"s unique way of dealing with his new, torturous life; along the way he befriends a number of fellow prisoners, most notably a wise long-term inmate named Red.",
         "rating": "9.3",
         "actors": "Tim Robbins, Morgan Freeman, Bob Gunton",
-        "pairedCuisine": "Beef Shank"
+        "pairedCuisine": "Beef Shank",
+        "poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BODU4MjU4NjIwNl5BMl5BanBnXkFtZTgwMDU2MjEyMDE@._V1_SX300.jpg"
     },
     {
         "id": 1,
@@ -19,7 +20,8 @@
         "plot": "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",
         "rating": "9.2",
         "actors": "Marlon Brando, Al Pacino, James Caan",
-        "pairedCuisine": "Italian"
+        "pairedCuisine": "Italian",
+        "poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BY2Q2NzQ3ZDUtNWU5OC00Yjc0LThlYmEtNWM3NTFmM2JiY2VhXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg"
     },
     {
         "id": 2,
@@ -30,7 +32,8 @@
         "plot": "The early life and career of Vito Corleone in 1920s New York City is portrayed, while his son, Michael, expands and tightens his grip on the family crime syndicate",
         "rating": "9.0",
         "actors": "Al Pacino, Robert De Niro, Robert Duvall",
-        "pairedCuisine": "Italian"
+        "pairedCuisine": "Italian",
+        "poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BMjZiNzIxNTQtNDc5Zi00YWY1LThkMTctMDgzYjY4YjI1YmQyL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg"
     },
     {
         "id": 3,
@@ -41,7 +44,8 @@
         "plot": "When the menace known as the Joker emerges from his mysterious past, he wreaks havoc and chaos on the people of Gotham, the Dark Knight must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
         "rating": "9.0",
         "actors": "Christian Bale, Heath Ledger, Aaron Eckhart",
-        "pairedCuisine": "Pizza"
+        "pairedCuisine": "Pizza",
+        "poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SX300.jpg"
     },
     {
         "id": 4,
@@ -52,7 +56,8 @@
         "plot": "A jury holdout attempts to prevent a miscarriage of justice by forcing his colleagues to reconsider the evidence.",
         "rating": "8.9",
         "actors": "Henry Fonda, Lee J. Cobb, Martin Balsam",
-        "pairedCuisine": "Pizza"                                  
+        "pairedCuisine": "Pizza",
+        "poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BMWU4N2FjNzYtNTVkNC00NzQ0LTg0MjAtYTJlMjFhNGUxZDFmXkEyXkFqcGdeQXVyNjc1NTYyMjg@._V1_SX300.jpg"                                 
     },
     {
         "id": 5,
@@ -63,7 +68,8 @@
         "plot": "In German-occupied Poland during World War II, Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazi Germans.",
         "rating": "8.9",
         "actors": "Liam Neeson, Ralph Fiennes, Ben Kingsley",
-        "pairedCuisine": "Kosher"                             
+        "pairedCuisine": "Kosher",
+        "poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BNDE4OTMxMTctNmRhYy00NWE2LTg3YzItYTk3M2UwOTU5Njg4XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg"                           
     },
     {
         "id": 6,
@@ -74,7 +80,8 @@
         "plot": "The lives of two mob hit men, a boxer, a gangster's wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
         "rating": "8.9",
         "actors": "John Travolta, Uma Thurman, Samuel L. Jackson",
-        "pairedCuisine": "Dinners and Dives"                
+        "pairedCuisine": "Dinners and Dives",
+        "poster":  "https://images-na.ssl-images-amazon.com/images/M/MV5BMTkxMTA5OTAzMl5BMl5BanBnXkFtZTgwNjA5MDc3NjE@._V1_SX300.jpg"              
     },
     {
         "id": 7,
@@ -85,7 +92,8 @@
         "plot": "Gandalf and Aragorn lead the World of Men against Sauron's army to draw his gaze from Frodo and Sam as they approach Mount Doom with the One Ring.",
         "rating": "8.9",
         "actors": "Elijah Wood, Viggo Mortensen, Ian McKellen",
-        "pairedCuisine": "Gastro Pub"                       
+        "pairedCuisine": "Gastro Pub",
+        "poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BYWY1ZWQ5YjMtMDE0MS00NWIzLWE1M2YtODYzYTk2OTNlYWZmXkEyXkFqcGdeQXVyNDUyOTg3Njg@._V1_SX300.jpg"                      
     },
     {
         "id": 8,
@@ -96,7 +104,8 @@
         "plot": "A bounty hunting scam joins two men in an uneasy alliance against a third in a race to find a fortune in gold buried in a remote cemetery.",
         "rating": "8.9",
         "actors": "Elijah Wood, Viggo Mortensen, Ian McKellen",
-        "pairedCuisine": "Pizza"                                
+        "pairedCuisine": "Pizza",
+        "poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BOTQ5NDI3MTI4MF5BMl5BanBnXkFtZTgwNDQ4ODE5MDE@._V1_SX300.jpg"                               
     },
     {
         "id": 9,
@@ -107,7 +116,8 @@
         "plot": "An insomniac office worker, looking for a way to change his life, crosses paths with a devil-may-care soap maker, forming an underground fight club that evolves into something much, much more.",
         "rating": "8.8",
         "actors": "Brad Pitt, Edward Norton, Meat Loaf",
-        "pairedCuisine": "Pizza"                                  
+        "pairedCuisine": "Pizza",
+        "poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BZGY5Y2RjMmItNDg5Yy00NjUwLThjMTEtNDc2OGUzNTBiYmM1XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg"                                 
     },
     {
         "id": 10,
@@ -118,7 +128,8 @@
         "plot": "A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle Earth from the Dark Lord Sauron.",
         "rating": "8.8",
         "actors": "Elijah Wood, Ian McKellen, Orlando Bloom",
-        "pairedCuisine": "Gastro Pub"                          
+        "pairedCuisine": "Gastro Pub",
+        "poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BN2EyZjM3NzUtNWUzMi00MTgxLWI0NTctMzY4M2VlOTdjZWRiXkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_SX300.jpg"                         
     },
     {
         "id": 11,
@@ -129,7 +140,8 @@
         "plot": "JFK, LBJ, Vietnam, Watergate, and other history unfold through the perspective of an Alabama man with an IQ of 75.",
         "rating": "8.7",
         "actors": "Tom Hanks, Robin Wright, Gary Sinise",
-        "pairedCuisine": "Shrimp"                                    
+        "pairedCuisine": "Shrimp",
+        "poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BNWIwODRlZTUtY2U3ZS00Yzg1LWJhNzYtMmZiYmEyNmU1NjMzXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg"                                   
     },
     {
         "id": 12,
@@ -140,7 +152,8 @@
         "plot": "After the rebels are overpowered by the Empire on their newly established base, Luke Skywalker begins Jedi training with Yoda. His friends accept shelter from a questionable ally as Darth Vader hunts them in a plan to capture Luke.",
         "rating": "8.8",
         "actors": "Mark Hamill, Harrison Ford, Carrie Fisher",
-        "pairedCuisine": "Pizza"                          
+        "pairedCuisine": "Pizza",
+        "poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BMjk2M2FiMTEtMzFlNS00MzcyLWFjYTAtODBiMDJjMWVlZTUwXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg"                         
     },
     {
         "id": 13,
@@ -151,7 +164,8 @@
         "plot": "A thief, who steals corporate secrets through use of dream-sharing technology, is given the inverse task of planting an idea into the mind of a CEO.",
         "rating": "8.7",
         "actors": "Leonardo DiCaprio, Joseph Gordon-Levitt, Ellen Page",
-        "pairedCuisine": "Pizza"                          
+        "pairedCuisine": "Pizza",
+        "poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg"                         
     },
     {
         "id": 14,
@@ -162,7 +176,8 @@
         "plot": "A jury holdout attempts to prevent a miscarriage of justice by forcing his colleagues to reconsider the evidence.",
         "rating": "8.7",
         "actors": "Elijah Wood, Ian McKellen, Viggo Mortensen",
-        "pairedCuisine": "Gastro Pub"                         
+        "pairedCuisine": "Gastro Pub",
+        "poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BMDY0NmI4ZjctN2VhZS00YzExLTkyZGItMTJhOTU5NTg4MDU4XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg"                        
     },
     {
         "id": 15,
@@ -173,7 +188,8 @@
         "plot": "A criminal pleads insanity after getting into trouble again and once in the mental institution rebels against the oppressive nurse and rallies up the scared patients.",
         "rating": "8.7",
         "actors": "Jack Nicholson, Louise Fletcher, Michael Berryman",
-        "pairedCuisine": "Chicken"                           
+        "pairedCuisine": "Chicken",
+        "poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BZjA0OWVhOTAtYWQxNi00YzNhLWI4ZjYtNjFjZTEyYjJlNDVlL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg"                          
     },
     {
         "id": 16,
@@ -184,7 +200,8 @@
         "plot": "The story of Henry Hill and his life in the mob, covering his relationship with his wife Karen Hill and his Mob partners Jimmy Conway and Tommy DeVito in the Italian-American crime syndicate.",
         "rating": "8.7",
         "actors": "Robert De Niro, Ray Liotta, Joe Pesci",
-        "pairedCuisine": "Pizza"                                    
+        "pairedCuisine": "Pizza",
+        "poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BNThjMzczMjctZmIwOC00NTQ4LWJhZWItZDdhNTk5ZTdiMWFlXkEyXkFqcGdeQXVyNDYyMDk5MTU@._V1_SX300.jpg"                                   
     },
     {
         "id": 17,
@@ -195,7 +212,8 @@
         "plot": "A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.",
         "rating": "8.7",
         "actors": "Keanu Reeves, Laurence Fishburne, Carrie-Anne Moss",
-        "pairedCuisine": "Pizza"                                   
+        "pairedCuisine": "Pizza",
+        "poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BNzQzOTk3OTAtNDQ0Zi00ZTVkLWI0MTEtMDllZjNkYzNjNTc4L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg"                                  
     },
     {
         "id": 18,
@@ -206,7 +224,8 @@
         "plot": "A poor village under attack by bandits recruits seven unemployed samurai to help them defend themselves.",
         "rating": "8.7",
         "actors": "Toshiro Mifune, Takashi Shimura, Keiko Tsushima",
-        "pairedCuisine": "Japanese"                            
+        "pairedCuisine": "Japanese",
+        "poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BMTc5MDY1MjU5MF5BMl5BanBnXkFtZTgwNDM2OTE4MzE@._V1_SX300.jpg"                          
     },
     {
         "id": 19,
@@ -217,7 +236,8 @@
         "plot": "Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee and two droids to save the galaxy from the Empire's world-destroying battle-station while also attempting to rescue Princess Leia from the evil Darth Vader.",
         "rating": "8.7",
         "actors": "Mark Hamill, Harrison Ford, Carrie Fisher",
-        "pairedCuisine": "Pizza"                            
+        "pairedCuisine": "Pizza",
+        "poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BZDk2NmNhZDgtZDgzZS00NTRkLWFiYjUtNGMzZTYwNTFhYjFmXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg"                           
     },
     {
         "id": 20,
@@ -228,7 +248,8 @@
         "plot": "Two boys growing up in a violent neighborhood of Rio de Janeiro take different paths: one becomes a photographer, the other a drug dealer.",
         "rating": "8.6",
         "actors": "Alexandre Rodrigues, Leandro Firmino, Matheus Nachtergaele",
-        "pairedCuisine": "Brazilian"                            
+        "pairedCuisine": "Brazilian",
+        "poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BNTM4MjZjNWEtMmQxMi00YzY5LTg4ZTAtODJlMDVkZWZmNTVhXkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_SX300.jpg"                           
     },
     {
         "id": 21,
@@ -239,7 +260,8 @@
         "plot": "Two detectives, a rookie and a veteran, hunt a serial killer who uses the seven deadly sins as his motives.",
         "rating": "8.6",
         "actors": "Morgan Freeman, Brad Pitt, Kevin Spacey",
-        "pairedCuisine": "Buffet"                            
+        "pairedCuisine": "Buffet",
+        "poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BOTUwODM5MTctZjczMi00OTk4LTg3NWUtNmVhMTAzNTNjYjcyXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg"                            
     },
     {
         "id": 22,
@@ -250,7 +272,8 @@
         "plot": "A young F.B.I. cadet must receive the help of an incarcerated and manipulative cannibal killer to help catch another serial killer, a madman who skins his victims.",
         "rating": "8.6",
         "actors": "Jodie Foster, Anthony Hopkins, Lawrence A. Bonney",
-        "pairedCuisine": "Liver"                            
+        "pairedCuisine": "Liver",
+        "poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BNjNhZTk0ZmEtNjJhMi00YzFlLWE1MmEtYzM1M2ZmMGMwMTU4XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg"                           
     },
     {
         "id": 23,
@@ -261,7 +284,8 @@
         "plot": "An angel is sent from Heaven to help a desperately frustrated businessman by showing him what life would have been like if he had never existed.",
         "rating": "8.6",
         "actors": "James Stewart, Donna Reed, Lionel Barrymore",
-        "pairedCuisine": "Pizza"                             
+        "pairedCuisine": "Pizza",
+        "poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BZjc4NDZhZWMtNGEzYS00ZWU2LThlM2ItNTA0YzQ0OTExMTE2XkEyXkFqcGdeQXVyNjUwMzI2NzU@._V1_SX300.jpg"                            
     },
     {
         "id": 24,
@@ -272,6 +296,7 @@
         "plot": "When an open-minded Jewish librarian and his son become victims of the Holocaust, he uses a perfect mixture of will, humor and imagination to protect his son from the dangers around their camp.",
         "rating": "8.6",
         "actors": "Roberto Benigni, Nicoletta Braschi, Giorgio Cantarini",
-        "pairedCuisine": "Kosher"                            
+        "pairedCuisine": "Kosher",
+        "poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BYmJmM2Q4NmMtYThmNC00ZjRlLWEyZmItZTIwOTBlZDQ3NTQ1XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg"                           
     }
 ]

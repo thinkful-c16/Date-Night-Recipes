@@ -13,7 +13,8 @@ const MovieSchema = mongoose.Schema({
   genre: { type: String, required: true },
   plot: { type: String, required: true },
   rating: { type: String, required: true },
-  actors: { type: String, required: true }
+  actors: { type: String, required: true },
+  poster: { type: url, required: true }
 });
 
 const RecipeSchema = mongoose.Schema({
