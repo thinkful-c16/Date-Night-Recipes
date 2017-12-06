@@ -7,7 +7,7 @@
         "moviesId": "0",
         "restaurantId": "tacos-la-villa-smyrna",
         "dateNight": "2017-11-13",
-        "rating": "cold",
+        "rating": 0,
         "ratingComment": "Meh"
     },
     {
@@ -18,7 +18,7 @@
         "moviesId": "13",
         "restaurantId": "bongiornos-pizza-flint",
         "dateNight": "2017-10-1",
-        "rating": "hot",
+        "rating": 1,
         "ratingComment": "Loved it"
     }
 ]
