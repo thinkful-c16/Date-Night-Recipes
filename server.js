@@ -4,8 +4,17 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 //custom imports
-const movies = require('./seed-data');
-const recipes = require('./recipe-seed-data'); 
+// const movies = require('./seed-data');
+// const recipes = require('./recipe-seed-data'); 
+
+const { DATABASE_URL } = require('./config');
+// console.log(DATABASE_URL);
+
+// 1) Pull movies and recipes from database now instead of seed-data files
+// 2) Create HTML app views and populate with db data
+// 3) -- Get images from Yelp
+// 4) Implement some tests
+
 
 const app = express();
 
