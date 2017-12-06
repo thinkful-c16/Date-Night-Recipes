@@ -17,7 +17,7 @@ const renderPage = function (store) {
 const renderResults = function (store) {
   //console.log(store);
   const listItems = store.list.map((item) => {
-  // console.log(item.title);
+    console.log(item);
     return `<li id="${item.id}">
                 <a href="${item.id}" class="detail">${item.title}</a>
             </li>`;
@@ -36,10 +36,8 @@ const renderDetail = function (store) {
   const el = $('#detail');
   const item = store.item;
   //make a call to Yelp with zip and cuisine
-  const searchZip = '30080';
+  const searchZip = '30080';   //need to rquest zip from user
   const searchCuisine = item.pairedCuisine;
-  const searchString = `https://api.yelp.com/v3/businesses/search?location=${searchZip}&term=${searchCuisine}`;
-  //console.log(searchZip, searchCuisine);
   
   $.ajax({
     method: 'GET',
@@ -47,6 +45,38 @@ const renderDetail = function (store) {
   } )
     .done(function(response) {
       console.log(response);
+      const restaurants = response;
+      restaurants.forEach(restaurant => {
+        //
+        const name = restaurant.name;
+        const yelpId = restaurant.id;
+        let address = restaurant.location.display_address[0];
+        address = address + '' + restaurant.location.display_address[1];
+        const img = restaurant.image_url;
+        const price = restaurant.price;
+        const rating = restaurant.rating;
+        const yelpURL = restaurant.url;
+
+        const HTML = `
+        <div class="showRestaurant">
+        <input type="radio" class="${yelpId}" value="${yelpId}"/>
+        <div class="restDetails">
+          <h3>${name}</h3>
+          <div class="restImg">
+            <img src="${img}" height="200" />
+          </div>
+          <p>${address}</p>
+          <p>Price Scale: ${price}</p>
+          <p>Yelp Rating: ${rating}</p>
+          <p><a href="${yelpURL}">View ${name} on Yelp</a></p>
+        </div>
+        </div>
+        `;
+
+        $('.restaurant').append(HTML);
+        //
+      });
+      
     })
     .fail(function() {
       console.log( 'error' );
