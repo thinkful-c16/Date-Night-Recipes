@@ -17,9 +17,14 @@ const renderPage = function (store) {
 const renderResults = function (store) {
   //console.log(store);
   const listItems = store.list.map((item) => {
-    console.log(item);
+  console.log(item);
     return `<li id="${item.id}">
-                <a href="${item.id}" class="detail">${item.title}</a>
+                <a href="${item.id}" class="detail">
+                <div>
+                  <img src="${item.poster}" height="200" alt="${item.title}"
+                </div>
+                <!-- <div class="titleText">${item.title}</div> -->
+                </a>
             </li>`;
   });
   $('#result').empty().append('<ul>').find('ul').append(listItems);

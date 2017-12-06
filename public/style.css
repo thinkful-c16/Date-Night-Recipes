@@ -31,3 +31,20 @@ button {
 #edit {
   /* display: none; */
 }
+
+#result ul {
+  display: flex;
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+#result li {
+  justify-content: space-between;
+  list-style: none;
+  margin: 10px;
+  max-width: 200px;
+}
+
+.titleText{
+  word-wrap: break-word;
+}
