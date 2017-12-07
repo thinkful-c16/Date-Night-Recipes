@@ -13,7 +13,7 @@ const { MovieModel, RecipeModel } = require('./models');
 const { DATABASE_URL, PORT } = require('./config');
 console.log(DATABASE_URL);
 
-// 1) Pull movies and recipes from database now instead of seed-data files
+// 1)XPull movies and recipes from database now instead of seed-data files
 // 2) Create HTML app views and populate with db data
 // 3) -- Get images from Yelp
 // 4) Implement some tests
@@ -57,6 +57,15 @@ app.get('/recipes/:id', (req, res) => {
     .then(recipes => res.json(recipes));
 });
 
+
+app.post('/recipes', (req, res) => {
+  RecipeModel
+    .create({ 'firstName': req.body.firstName, 'email': req.body.email, 'zip': req.body.zip })
+    .then(created => {
+      console.log(created);
+      res.json(created);
+    });
+});
 
 //after detail submit, update document
 app.put('/recipes/:id', (req, res) => {
