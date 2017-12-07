@@ -61,7 +61,7 @@ app.get('/recipes/:id', (req, res) => {
 //after detail submit, update document
 app.put('/recipes/:id', (req, res) => {
   RecipeModel
-    .findByIdAndUpdate(req.params.id, { $set: { 'ratingComment': req.body.comment } }, { new: true })
+    .findByIdAndUpdate(req.params.id, { $set: { 'ratingComment': req.body.ratingComment, 'rating': req.body.rating } }, { new: true })
     .then(updated => {
       console.log(updated);
       // res.json(updated);
