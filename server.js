@@ -34,25 +34,18 @@ app.get('/movies', (req, res) => {
     });
 });
 
-app.post('/movies', (req, res) => {
-  res.json(movies);
-});
+//Comment out this endpoint(Only used for reference)
+// app.post('/movies', (req, res) => {
+//   res.json(movies);
+// });
 
 app.get('/movies/:id', (req, res) => {
-  res.json(movies[req.params.id]);
+  MovieModel
+    .findById(req.params.id)
+    .then(movie => {
+      res.json(movie);
+    });
 });
-
-// ### Backend
-// app.get('/yelp/search', (req, res) => {
-//   const {zip, cuisine} = req.query;
-//   const searchString = `https://api.yelp.com/.../search?location=${zip}&cuisine=${cuisine}`;
-//   axios
-//   .headers({})
-//   .get(searchString)
-//   .then(yelpRes => {
-//     res.status(200).send(yelpRes);
-//   })
-// });
 
 
 // Yelp API proxy 
@@ -129,6 +122,13 @@ app.delete('/recipes/:id', (req, res) => {
     });
   // res.send('deleted');
 });
+
+//Catch all endpoint for request to non-existent endpoint
+app.use('*', function (req, res) {
+  res.status(404).json({ message: 'Not Found' });
+});
+
+
 
 let server;
 
