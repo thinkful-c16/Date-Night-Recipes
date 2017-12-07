@@ -26,6 +26,10 @@ app.get('/movies', (req, res) => {
   res.json(movies);
 });
 
+app.post('/movies', (req, res) => {
+  res.json(movies);
+});
+
 app.get('/movies/:id', (req, res) => {
   res.json(movies[req.params.id]);
 });
@@ -52,7 +56,7 @@ app.get('/yelp/search', (req, res) => {
   axios
     .get(searchString)
     .then(yelpRes => {
-      console.log(yelpRes.data.businesses);
+      //console.log(yelpRes.data.businesses);
       res.status(200).json(yelpRes.data.businesses);
     })
     .catch(err => {
@@ -77,7 +81,15 @@ app.get('/recipes/:id', (req, res) => {
   res.json(recipes[req.params.id]);
 });
 
+app.post('/recipes', (req, res) => {
+  //create document and get the newly created id from the res
+  //add id to query string when making call to next endpoint
+  console.log(req.body);
+  res.json({message: 'recipecreated', id: 999 });
+});
+
 app.put('/recipes/:id', (req, res) => {
+
   //after detail submit, update document
   console.log(req.body);     //req.body = undefined if body-parser hasn't been imported
   req.body.comment = 'fake update';

@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 form, section {
   margin-top: 10px;
 }
@@ -8,17 +12,18 @@ label {
 }
 
 button, input[type=submit] {
-  height: 30px;
-  width: 100px;
-  background-color: lightblue;
+  padding: 20px;
+  background-color: rgb(9, 9, 69);
+  border-radius: 0;
+  color: white;
+  font-size: 1rem;
 }
 
 button {
-  height: 30px;
-  width: 100px;
+  padding: 10px;
   margin-left: 20px;
-  margin-top: 20px;
-  background-color: lightblue;
+  background-color: rgb(9, 9, 69);
+  color: white;
 }
 
 #nav li {
@@ -27,9 +32,8 @@ button {
 
 #search,
 #detail,
-#create,
 #edit {
-  /* display: none; */
+  display: none;
 }
 
 #result ul {
@@ -47,4 +51,23 @@ button {
 
 .titleText{
   word-wrap: break-word;
+}
+
+.showRestaurant{
+  clear: both;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.showRestaurant > input, .restImg, restDetails{
+  float: left;
+}
+
+.restImg{
+  margin: 10px;
+}
+
+.restImg img{
+  width: 200px;
 }

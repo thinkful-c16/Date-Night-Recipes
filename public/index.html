@@ -13,12 +13,12 @@
 
 <body>
 	<h2>API Client</h2>
-	<ul id="nav">
+	<!-- <ul id="nav">
 		<li> </li>
-		<a href="" class="viewSearch">List</a> |
+		<a href="" class="viewSearch">Select by Movie</a> |
 		<li> </li>
-		<a href="" class="viewCreate">Create</a>
-	</ul>
+		<a href="" class="viewCreate">Select by Cuisine</a>
+	</ul> -->
 
 	<form id="search" class="view">
 		<div id="result"></div>
@@ -30,9 +30,10 @@
 			<legend>Based on your selection of:</legend>
 			<div>
 				<!-- <label for="title"></label> -->
-				<span class="title"></span>
+				<h2 class="title"></h2>
 			</div>
-			<p>We recommend the following restaurants near you:</p>
+			
+			<p class="recommendation"></p>
 			
 			<!-- <div>
 				<label for="comment">Comment</label>
@@ -48,28 +49,39 @@
 					<label for="comment">Comment</label>
 					<textarea rows="4" cols="50" name="comment"></textarea>
 				</div> -->
-				<button type="submit">Submit</button>
+				<button type="submit">Save my Date Night Recipe</button>
 			</form>
 
-			<a href="" class="edit">Edit</a>
-			<a href="" class="remove">Remove</a>
+			<!-- <a href="" class="edit">Edit</a>
+			<a href="" class="remove">Remove</a> -->
 		</fieldset>
 		<a href="" class="viewList">&lt; Back to list results </a>
 	</section>
 
 	<form id="create" class="view">
 		<fieldset>
-			<legend>Create</legend>
+			<legend>Let's Get Started</legend>
+
 			<div>
-				<label for="name">Title</label>
-				<input type="text" name="title">
+				<label for="firstName">First Name</label>
+				<input type="text" name="firstName" value="Tony">
 			</div>
 			<div>
+				<label for="email">Email</label>
+				<input type="text" name="email" value="tony@email.com">
+			</div>
+			<div>
+				<label for="zipCode">Zip Code</label>
+				<input type="text" name="zipCode" value="30322">
+			</div>
+			<!-- <div>
 				<label for="name">Content</label>
 				<textarea rows="4" cols="50" name="content"></textarea>
+			</div> -->
+			<div>
+				<button type="submit">Choose Movie</button>
+				<!-- <button type="submit">Choose Cuisine</button> -->
 			</div>
-
-			<button type="submit">Submit</button>
 		</fieldset>
 	</form>
 

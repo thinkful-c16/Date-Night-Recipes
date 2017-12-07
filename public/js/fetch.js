@@ -61,8 +61,8 @@ var api = {
       .then(res => res.json());
   },
   create: function (document) {
-    const url = buildUrl(`${MOVIES_URL}`);
-
+    const url = buildUrl(`${RECIPES_URL}`);
+    
     return fetch(url, {
       method: 'POST',
       headers: {
@@ -74,7 +74,7 @@ var api = {
       .then(res => res.json());
   },  
   update: function (document) {
-    const url = buildUrl(`${MOVIES_URL}/${document.id}`);
+    const url = buildUrl(`${RECIPES_URL}/${document.id}`);
     
     console.log('dev tools', document);
 
