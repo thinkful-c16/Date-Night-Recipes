@@ -3,6 +3,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const axios = require('axios');
 mongoose.Promise = global.Promise;
 
 //custom imports
@@ -30,6 +31,44 @@ app.get('/movies', (req, res) => {
     .then(movies => {
       // console.log(movies);
       res.json(movies);
+    });
+});
+
+app.post('/movies', (req, res) => {
+  res.json(movies);
+});
+
+app.get('/movies/:id', (req, res) => {
+  res.json(movies[req.params.id]);
+});
+
+// ### Backend
+// app.get('/yelp/search', (req, res) => {
+//   const {zip, cuisine} = req.query;
+//   const searchString = `https://api.yelp.com/.../search?location=${zip}&cuisine=${cuisine}`;
+//   axios
+//   .headers({})
+//   .get(searchString)
+//   .then(yelpRes => {
+//     res.status(200).send(yelpRes);
+//   })
+// });
+
+
+// Yelp API proxy 
+app.get('/yelp/search', (req, res) => {
+  const AUTH_TOKEN = 'Bearer wEUb-VMxE0zsWNBtO7LFTg5STUEX9ERbvKK4eAZu0h_3GG0WwXNKVAxTmU6Pq4jHvw55RsXQyYxnWxIaS9aCl_if0U35m0tZXlP7FpoHWy6td-fUUVgi10-u-nclWnYx';
+  const { zip, cuisine } = req.query;
+  const searchString = `https://api.yelp.com/v3/businesses/search?location=${zip}&term=${cuisine}&limit=5`;
+  axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
+  axios
+    .get(searchString)
+    .then(yelpRes => {
+      //console.log(yelpRes.data.businesses);
+      res.status(200).json(yelpRes.data.businesses);
+    })
+    .catch(err => {
+      console.log(err);
     });
 });
 

@@ -1,23 +1,33 @@
 /* global jQuery, handle, $, api */
 'use strict';
 
-const ITEMS_URL = '/recipes';
+//const ITEMS_URL = '/movies';
+const MOVIES_URL = '/movies';
+const RECIPES_URL = '/recipes';
 
 const renderPage = function (store) {
   if (store.demo) {
     $('.view').css('background-color', 'gray');
     $('#' + store.view).css('background-color', 'white');
   } else {
+    //console.log(store);
     $('.view').hide();
     $('#' + store.view).show();
   }
 };
 
 const renderResults = function (store) {
+  //console.log(store);
   const listItems = store.list.map((item) => {
+  //console.log(item);
     return `<li id="${item.id}">
-                <a href="${item.url}" class="detail">${item.Title}</a>
-              </li>`;
+                <a href="${item.id}" class="detail">
+                <div>
+                  <img src="${item.poster}" height="200" alt="${item.title}"
+                </div>
+                <!-- <div class="titleText">${item.title}</div> -->
+                </a>
+            </li>`;
   });
   $('#result').empty().append('<ul>').find('ul').append(listItems);
 };
@@ -32,10 +42,56 @@ const renderEdit = function (store) {
 const renderDetail = function (store) {
   const el = $('#detail');
   const item = store.item;
-  el.find('.title').text(item.Title);
-  el.find('.comment').text(item.comment);
-  el.find('.restaurant').text(item.restaurantName);
-  el.find('[name=comment]').val(item.comment);
+  //make a call to Yelp with zip and cuisine
+  const searchZip = '30080';   //need to rquest zip from user
+  const searchCuisine = item.pairedCuisine;
+  const recommendationString = `We recommend the following ${searchCuisine} restaurants near you. Please select one:`;
+  
+  $.ajax({                      //used $.ajax because $.getJSON doesn't allow you to add headers (even though we had to move the Yelp API call server-side due to CORS issue)
+    method: 'GET',
+    url: `http://localhost:8080/yelp/search?zip=${searchZip}&cuisine=${searchCuisine}`
+  } )
+    .done(function(response) {
+      //console.log(response);
+      const restaurants = response;
+      restaurants.forEach(restaurant => {
+        //
+        const name = restaurant.name;
+        const yelpId = restaurant.id;
+        let address = restaurant.location.display_address[0];
+        address = address + ', ' + restaurant.location.display_address[1];
+        const img = restaurant.image_url;
+        const price = restaurant.price;
+        const rating = restaurant.rating;
+        const yelpURL = restaurant.url;
+
+        const HTML = `
+        <div class="showRestaurant">
+        <input type="radio" name="restaurantPick" class="restaurantPick" value="${yelpId}" required/>
+          <div class="restImg">
+            <img src="${img}" height="200" />
+          </div>
+          <div class="restDetails">
+          <h3>${name}</h3>
+          <p>${address}</p>
+          <p>Price Scale: ${price}</p>
+          <p>Yelp Rating: ${rating}</p>
+          <p><a href="${yelpURL}" target="_blank">View ${name} on Yelp</a></p>
+        </div>
+        </div>
+        `;
+        $('#edit').css('display', 'block');
+        $('.restaurant').append(HTML);
+        //
+      });
+      
+    })
+    .fail(function() {
+      console.log( 'error' );
+    });
+
+  el.find('.title').text(item.title);
+  el.find('.recommendation').text(recommendationString);
 };
 
 const handleSearch = function (event) {
@@ -67,16 +123,20 @@ const handleCreate = function (event) {
   const el = $(event.target);
 
   const document = {
-    title: el.find('[name=title]').val(),
-    content: el.find('[name=content]').val()
+    firstName: el.find('[name=firstName]').val(),
+    email: el.find('[name=email]').val(),
+    zip: el.find('[name=zipCode]').val()
   };
+
   api.create(document)
     .then(response => {
+      console.log(response);
       store.item = response;
       store.list = null; //invalidate cached list results
-      renderDetail(store);
-      store.view = 'detail';
-      renderPage(store);
+      // renderDetail(store);
+      // store.view = 'search';
+      // renderPage(store);
+      $('#search').trigger('submit');
     }).catch(err => {
       console.error(err);
     });
@@ -86,14 +146,32 @@ const handleUpdate = function (event) {
   event.preventDefault();
   const store = event.data;
   const el = $(event.target);
+  
+  function getChoice(){
+    for(let i = 0; i < 5; i++){
+      let choice = '';
+      if(el[0][i].checked){
+        return el[0][i].value;
+      }
+    }
+  }
+
+  const choice = getChoice();
 
   const document = {
-    id: store.item.id,
-    comment: el.find('[name=comment]').val(),
-    rating: 'hot'
+    //id = 0   need to capture the recipeId
+    movieId: store.item.id,   //this is the movie number, not the
+    restaurantId: choice
   };
+
+  // const document = {
+  //   id: store.item.id,
+  //   restaurantId: choice,
+  //   rating: 'hot'
+  // };
   api.update(document)      //this refers to the method created fetch.js (line 76)
     .then(response => {
+      //console.log(response);
       store.item = response;
       store.list = null; //invalidate cached list results
       renderDetail(store);
@@ -172,6 +250,7 @@ jQuery(function ($) {
     item: null,         // currently selected document
   };
 
+
   $('#create').on('submit', STORE, handleCreate);
   $('#search').on('submit', STORE, handleSearch);
   $('#edit').on('submit', STORE, handleUpdate);
@@ -184,6 +263,6 @@ jQuery(function ($) {
   $(document).on('click', '.viewList', STORE, handleViewList);
 
   // start app by triggering a search
-  $('#search').trigger('submit');
+  // $('#search').trigger('submit');
 
 });
