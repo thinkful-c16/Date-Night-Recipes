@@ -6,10 +6,10 @@ const { MovieModel, RecipeModel } = require('./models');
 const movies = require('./seed-data');
 const recipes = require('./recipe-seed-data');
 
-const { DATABASE_URL } = require('./config');
+const { DATABASE_URL, TEST_DATABASE_URL } = require('./config');
 console.log(movies);
 
-mongoose.connect( DATABASE_URL, {useMongoClient: true} )
+mongoose.connect( TEST_DATABASE_URL, {useMongoClient: true} )
   .then(() => { mongoose.connection.db.dropDatabase();
   })
   .then(() => {

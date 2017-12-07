@@ -28,7 +28,7 @@ app.get('/movies', (req, res) => {
   MovieModel
     .find()
     .then(movies => {
-      console.log(movies);
+      // console.log(movies);
       res.json(movies);
     });
 });
@@ -93,15 +93,15 @@ app.delete('/recipes/:id', (req, res) => {
 
 let server;
 
-function runServer() {
+function runServer(database_url, port) {
   return new Promise((resolve, reject) => {
-    mongoose.connect(DATABASE_URL, { useMongoClient: true }, err => {
+    mongoose.connect(database_url, { useMongoClient: true }, err => {
       if (err) {
         return reject(err);
       }
       server = app
-        .listen(PORT, () => {
-          console.log(`Your app is listening on port ${PORT}`);
+        .listen(port, () => {
+          console.log(`Your app is listening on port ${port}`);
           resolve();
         })
         .on('error', err => {
@@ -127,7 +127,7 @@ function closeServer() {
 }
 
 if (require.main === module) {
-  runServer().catch(err => console.error(err));
+  runServer(DATABASE_URL, PORT).catch(err => console.error(err));
 }
 
 module.exports = { app, runServer, closeServer };
