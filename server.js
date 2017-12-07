@@ -2,13 +2,16 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 
 //custom imports
 // const movies = require('./seed-data');
-// const recipes = require('./recipe-seed-data'); 
+// const recipes = require('./recipe-seed-data');
+const { MovieModel, RecipeModel } = require('./models');
 
-const { DATABASE_URL } = require('./config');
-// console.log(DATABASE_URL);
+const { DATABASE_URL, PORT } = require('./config');
+console.log(DATABASE_URL);
 
 // 1) Pull movies and recipes from database now instead of seed-data files
 // 2) Create HTML app views and populate with db data
@@ -22,41 +25,104 @@ app.use(bodyParser.json());
 app.use(express.static('public'));    //provides hook to all of the static files in public directory
 
 app.get('/movies', (req, res) => {
-  res.json(movies);
+  MovieModel
+    .find()
+    .then(movies => {
+      console.log(movies);
+      res.json(movies);
+    });
 });
 
 app.get('/cuisines', (req, res) => {
-  const cuisines = movies.map(movie => {
-    return movie.pairedCuisine;
-  });
-  res.json(cuisines);
+  MovieModel
+    .find()
+    .then(movies => {
+      const cuisine = movies.map(movie => movie.pairedCuisine);
+      res.json(cuisine);
+    });
+
 });
 
+//display all of the recipes
 app.get('/recipes', (req, res) => {
-  //display all of the recipes
-  res.json(recipes);
+  RecipeModel
+    .find()
+    .then(recipes => res.json(recipes));
 });
 
+//display the recipe for the id provided from req.params.id
 app.get('/recipes/:id', (req, res) => {
-  //display the recipe for the id provided from req.params.id
-  res.json(recipes[req.params.id]);
+  RecipeModel
+    .findById(req.params.id)
+    .then(recipes => res.json(recipes));
 });
 
+
+//after detail submit, update document
 app.put('/recipes/:id', (req, res) => {
-  //after detail submit, update document
-  console.log(req.body);     //req.body = undefined if body-parser hasn't been imported
-  req.body.comment = 'fake update';
-  res.json(req.body);
+  RecipeModel
+    .findByIdAndUpdate(req.params.id, { $set: { 'ratingComment': req.body.comment } }, { new: true })
+    .then(updated => {
+      console.log(updated);
+      // res.json(updated);
+    });
+  //respond with entire database
+  RecipeModel
+    .find()
+    .then(recipes => res.json(recipes));
 });
 
 app.delete('/recipes/:id', (req, res) => {
-  res.send('deleted');
+  RecipeModel
+    .findOneAndRemove({ _id: req.params.id })
+    .then(deleted => {
+      console.log(deleted);
+      res.status(202).json(deleted);
+    });
+  // res.send('deleted');
 });
 
-if (require.main === module) {
-  app.listen(process.env.PORT || 8080, function () {
-    console.info(`App listening on ${this.address().port}`);
+let server;
+
+function runServer() {
+  return new Promise((resolve, reject) => {
+    mongoose.connect(DATABASE_URL, { useMongoClient: true }, err => {
+      if (err) {
+        return reject(err);
+      }
+      server = app
+        .listen(PORT, () => {
+          console.log(`Your app is listening on port ${PORT}`);
+          resolve();
+        })
+        .on('error', err => {
+          mongoose.disconnect();
+          reject(err);
+        });
+    });
   });
 }
 
-module.exports = app;
+function closeServer() {
+  return mongoose.disconnect().then(() => {
+    return new Promise((resolve, reject) => {
+      console.log('Closing server');
+      server.close(err => {
+        if (err) {
+          return reject(err);
+        }
+        resolve();
+      });
+    });
+  });
+}
+
+if (require.main === module) {
+  runServer().catch(err => console.error(err));
+}
+
+module.exports = { app, runServer, closeServer };
+
+
+
+

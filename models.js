@@ -5,7 +5,7 @@ mongoose.Promise = global.Promise;
 
 const Schema = mongoose.Schema;
 
-const MovieSchema = mongoose.Schema({
+const MovieSchema = new mongoose.Schema({
   pairedCuisine: { type: String, required: true },
   title: { type: String, required: true },
   year: Number,
@@ -14,10 +14,10 @@ const MovieSchema = mongoose.Schema({
   plot: { type: String, required: true },
   rating: { type: String, required: true },
   actors: { type: String, required: true },
-  poster: { type: url, required: true }
+  poster: { type: String, required: true }
 });
 
-const RecipeSchema = mongoose.Schema({
+const RecipeSchema = new mongoose.Schema({
   zip: { type: Number, required: true },
   email: { type: String, required: true },
   firstName: { type: String, required: true },
