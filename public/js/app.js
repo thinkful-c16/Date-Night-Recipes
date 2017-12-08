@@ -40,6 +40,7 @@ const renderEdit = function (store) {
 };
 
 const renderDetail = function (store) {
+  console.log('renderDetail called');
   const el = $('#detail');
   store.movieId = store.item._id;
   const item = store.item;
@@ -51,7 +52,7 @@ const renderDetail = function (store) {
   //make a call to Yelp with zip and cuisine
   const searchZip = store.zip;
   const searchCuisine = item.pairedCuisine;
-  const recommendationString = `We recommend the following ${searchCuisine} restaurants near you. Please select one:`;
+  const recommendationString = `We recommend the following <span class="highlight">${searchCuisine}</span> restaurants near you. Please select one:`;
 
   $.ajax({                      //used $.ajax because $.getJSON doesn't allow you to add headers (even though we had to move the Yelp API call server-side due to CORS issue)
     method: 'GET',
@@ -97,7 +98,7 @@ const renderDetail = function (store) {
     });
 
   el.find('.title').text(item.title);
-  el.find('.recommendation').text(recommendationString);
+  el.find('.recommendation').html(recommendationString);
 };
 
 const handleSearch = function (event) {
@@ -155,22 +156,12 @@ const handleUpdate = function (event) {
   event.preventDefault();
   const store = event.data;
   const el = $('#edit').find('input:checked');
-  console.log(el);
-
-  // function getChoice() {
-  //   for (let i = 0; i < 5; i++) {
-  //     let choice = '';
-  //     if (el[0][i].checked) {
-  //       console.log(el[0][i]);
-  //       return el[0][i].value;
-  //     }
-  //   }
-  // }
+  //console.log(el);
 
   const choice = el.val();
   store.restaurantData.restaurantImgURL = el.next().find('img').attr('src');
   store.restaurantData.restaurantName = el.parent().find('.restDetails').find('h3').text();
-  console.log(store.restaurantData.restaurantName);
+  //console.log(store.restaurantData.restaurantName);
 
   const document = {
     id: store.recipeData.recipeId,
@@ -190,7 +181,8 @@ const handleUpdate = function (event) {
       //console.log(response);
       store.item = response;
       store.list = null; //invalidate cached list results
-      renderDetail(store);
+      console.log('line 184');
+      //renderDetail(store);
       store.view = 'itsADate';
       renderPage(store);
     }).catch(err => {
@@ -201,7 +193,7 @@ const handleUpdate = function (event) {
 };
 
 const showFinalRecipe = function (store) {
-  console.log(store);
+  
   api.confirm(store.recipeData.id)
     .then(response => {
       console.log(response);
@@ -220,9 +212,21 @@ const showFinalRecipe = function (store) {
       <h3>${restaurantName}</h3>
     </div>
     `;
+      const postStr = $.post('recipes', {id: store.recipeData.id});
+      const nextStepsHTML = `
+      <p>If this looks good, schedule below and we'll email you at <a href="mailto:${response.email}">${response.email}</a> two days after your date night to see if it was a winning recipe.</p>
+      <form action="#">
+        Select date night:
+        <input type="month" name="year_week">
+        <input class="btnPicker" type="submit">
+      </form>
+      <p>Not loving it? No problem. Just <a href="${postStr}">cancel it</a> and <a href="http://localhost:8080">try again</a>.</p>
+      `;
 
       $('.success').html(`<h1>${response.firstName}, here's your Date Night Recipe</h1>`);
       $('.dateSchedule').html(recipeHTML);
+      $('.nextSteps').html(nextStepsHTML);
+      console.log(store);
     })
     .catch(err => {
       console.log(err);
@@ -238,6 +242,7 @@ const handleDetails = function (event) {
   api.details(id)
     .then(response => {
       store.item = response;
+      console.log('line 251');
       renderDetail(store);
 
       store.view = 'detail';

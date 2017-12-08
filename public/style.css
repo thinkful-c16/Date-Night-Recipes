@@ -1,5 +1,38 @@
 * {
   box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  font-family: Poppins, 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 18px;
+  text-align: center;
+  color: #676767;
+  background: whitesmoke;
+  background-image: url(./images/background-2658006_1280.png);
+  background-size: cover;
+}
+
+h1 {
+  margin: 50px 0;
+  color: #9C6466;
+  font-family: 'Lato';
+}
+
+h2 {
+  font-family: 'Lato';
+  font-size: 2rem;
+  background: rgba(110, 101, 104, 1);
+  color: #C2C9CA;
+  padding: 50px 0;
+  margin-bottom: 50px;
+}
+
+h2.title {
+  color: #6E6568;
+  padding: 0;
+  margin: 30px 0;
+  background: none;
 }
 
 form, section {
@@ -8,12 +41,14 @@ form, section {
 label {
   display: block;
   display:inline-block;
-  width: 80px;
+  width: 125px;
+  text-align: right;
+  margin-right: 15px;
 }
 
 button, input[type=submit] {
   padding: 20px;
-  background-color: rgb(9, 9, 69);
+  background-color: #9C6466;
   border-radius: 0;
   color: white;
   font-size: 1rem;
@@ -21,9 +56,14 @@ button, input[type=submit] {
 
 button {
   padding: 10px;
-  margin-left: 20px;
-  background-color: rgb(9, 9, 69);
+  margin: 20px 0;
+  background-color: #9C6466;
   color: white;
+}
+
+input.btnPicker{
+  padding: 5px 20px !important;
+  margin-bottom: 25px;
 }
 
 #nav li {
@@ -54,7 +94,8 @@ button {
 }
 
 .imgMovie, .imgRestaurant{
-  margin: 0 50px;
+  margin: 0 30px;
+  width: 50%;
 }
 
 
@@ -86,4 +127,51 @@ button {
 
 .restImg img{
   width: 200px;
+}
+
+fieldset {
+  border: 1px dashed #6E6568;
+  width: 70%;
+  margin: 0 auto 100px auto;
+  background: rgba(255, 255, 255, .8);
+};
+
+
+input {
+  padding: 5px;
+  border: 1px solid #bbb;
+}
+
+.restDetails {
+  line-height: 2em;
+  text-align: left;
+}
+
+.highlight{
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+hr{ 
+  border: 0; 
+  height: 1px;
+  margin: 50px auto 80px auto; 
+  background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+  background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+  background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+  background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); 
+}
+
+a:link, a:visited{
+  color: #ED7769;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #6E6568;
+}
+
+button:hover{
+  background: #C6BFBF;
+  color: #6E6568;
 }
