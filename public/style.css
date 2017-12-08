@@ -175,3 +175,9 @@ button:hover{
   background: #C6BFBF;
   color: #6E6568;
 }
+
+.intro{
+  width: 80%;
+  margin: 0 auto 50px auto;
+
+}
