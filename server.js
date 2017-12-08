@@ -12,7 +12,7 @@ mongoose.Promise = global.Promise;
 const { MovieModel, RecipeModel } = require('./models');
 
 const { DATABASE_URL, PORT } = require('./config');
-console.log(DATABASE_URL);
+//console.log(DATABASE_URL);
 
 // 1)XPull movies and recipes from database now instead of seed-data files
 // 2) Create HTML app views and populate with db data
@@ -29,7 +29,7 @@ app.get('/movies', (req, res) => {
   MovieModel
     .find()
     .then(movies => {
-      // console.log(movies);
+      console.log(movies);
       res.json(movies);
     });
 });
@@ -38,14 +38,13 @@ app.get('/movies', (req, res) => {
 //   res.json(movies);
 // });
 
-// app.get('/movies/:id', (req, res) => {
-//   MovieModel
-//     .findById(req.params.id)
-//     .then(movie => {
-//       res.json(movie);
-//     });
-// });
-
+app.get('/movies/:id', (req, res) => {
+  MovieModel
+    .findById(req.params.id)
+    .then(movie => {
+      res.json(movie);
+    });
+});
 
 // Yelp API proxy 
 app.get('/yelp/search', (req, res) => {
@@ -83,28 +82,74 @@ app.get('/recipes', (req, res) => {
 
 //display the recipe for the id provided from req.params.id
 app.get('/recipes/:id', (req, res) => {
+  //console.log(req.params);
   RecipeModel
     .findById(req.params.id)
-    .then(recipes => 
-      res.json(recipes));
+    .then(recipe => {
+      //console.log(recipe);
+      res.json(recipe);
+    });
 });
 
 
 app.post('/recipes', (req, res) => {
+  // const requiredFields = ['firstName', 'email', 'zip'];
+  // for (let i = 0; i < requiredFields.length; i++) {
+  //   const field = requiredFields[i];
+  //   if (!(field in req.body)) {
+  //     const message = `Missing \`${field}\` in request body`;
+  //     console.error(message);
+  //     return res.status(400).send(message);
+  //   }
+  // }
   RecipeModel
-    .create({ 'firstName': req.body.firstName, 'email': req.body.email, 'zip': req.body.zip })
+    .create({'firstName': req.body.firstName, 'email': req.body.email, 'zip': req.body.zip})
     .then(created => {
-      console.log(created);
       res.json(created);
+      // .catch(err => {
+      //   console.error(err);
+      //   res.status(500).json({ message: 'Internal Server Error' });
+      // });
     });
 });
 
-//after detail submit, update document
+//after selecting restaurant, update document (before date night)
 app.put('/recipes/:id', (req, res) => {
+  //console.log('line 103', req.body);
   RecipeModel
-    .findByIdAndUpdate(req.params.id, { $set: { 'ratingComment': req.body.ratingComment, 'rating': req.body.rating } }, { new: true })
+    .findByIdAndUpdate(req.params.id, {
+      $set: {
+        'movieId': req.body.movieId,
+        'restaurantId': req.body.restaurantId
+        // 'ratingComment': req.body.ratingComment, 
+        // 'rating': req.body.rating 
+      }
+    }, { new: true })
     .then(updated => {
-      console.log(updated);
+      //console.log('line 112', updated);
+      // res.json(updated);
+    });
+  //respond with entire database
+  RecipeModel
+    .find()
+    .then(recipes => res.status(204).json(recipes).end());
+  // .catch(err => {
+  //   console.log(err);
+  //   res.status(500).send({ error: 'Internal Server Error' });
+  // });
+});
+
+//after reviewing recipe, update document (after date night)
+app.put('/recipes/reviews/:id', (req, res) => {
+  RecipeModel
+    .findByIdAndUpdate(req.params.id, {
+      $set: {
+        'ratingComment': req.body.ratingComment,
+        'rating': req.body.rating
+      }
+    }, { new: true })
+    .then(updated => {
+      //console.log(updated);
       // res.json(updated);
     });
   //respond with entire database
@@ -118,8 +163,9 @@ app.delete('/recipes/:id', (req, res) => {
     .findOneAndRemove({ _id: req.params.id })
     .then(deleted => {
       console.log(deleted);
-      res.status(202).json(deleted);
+      res.status(204).json(deleted);
     });
+  // .catch(err => res.status(500).json({ message: 'Internal server error' }));
   // res.send('deleted');
 });
 
