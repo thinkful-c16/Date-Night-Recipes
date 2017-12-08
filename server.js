@@ -34,18 +34,17 @@ app.get('/movies', (req, res) => {
     });
 });
 
-//Comment out this endpoint(Only used for reference)
 // app.post('/movies', (req, res) => {
 //   res.json(movies);
 // });
 
-app.get('/movies/:id', (req, res) => {
-  MovieModel
-    .findById(req.params.id)
-    .then(movie => {
-      res.json(movie);
-    });
-});
+// app.get('/movies/:id', (req, res) => {
+//   MovieModel
+//     .findById(req.params.id)
+//     .then(movie => {
+//       res.json(movie);
+//     });
+// });
 
 
 // Yelp API proxy 
@@ -86,7 +85,8 @@ app.get('/recipes', (req, res) => {
 app.get('/recipes/:id', (req, res) => {
   RecipeModel
     .findById(req.params.id)
-    .then(recipes => res.json(recipes));
+    .then(recipes => 
+      res.json(recipes));
 });
 
 
@@ -125,7 +125,7 @@ app.delete('/recipes/:id', (req, res) => {
 
 //Catch all endpoint for request to non-existent endpoint
 app.use('*', function (req, res) {
-  res.status(404).json({ message: 'Not Found' });
+  res.status(404).json({ message: 'Endpoint Not Found' });
 });
 
 

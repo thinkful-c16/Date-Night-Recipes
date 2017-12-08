@@ -53,9 +53,6 @@ describe('apiResources', () => {
           res.body.should.be.a('array');
           res.body.should.have.length.of.at.least(1);
         });
-      // it('GET , function () {
-
-      // })
     });
 
   });
