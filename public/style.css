@@ -181,3 +181,11 @@ button:hover{
   margin: 0 auto 50px auto;
 
 }
+
+span#delete{
+  color: #ED7769;
+}
+
+span#delete:hover{
+  cursor: pointer;
+}

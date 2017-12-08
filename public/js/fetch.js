@@ -104,7 +104,7 @@ var api = {
       .then(res => res.json());
   },
   remove: function (id) {
-    const url = buildUrl(`${MOVIES_URL}/${id}`);
+    const url = buildUrl(`${RECIPES_URL}/${id}`);
     console.log('remove called');
     return fetch(url, {
       method: 'DELETE',

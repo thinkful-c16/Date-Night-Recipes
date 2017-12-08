@@ -220,7 +220,7 @@ const showFinalRecipe = function (store) {
         <input type="month" name="year_week">
         <input class="btnPicker" type="submit">
       </form>
-      <p>Not loving it? No problem. Just <a href="${postStr}">cancel it</a> and <a href="http://localhost:8080">try again</a>.</p>
+      <p>Not loving it? No problem. Just <span id="delete">cancel it</span> and try again</a>.</p>
       `;
 
       $('.success').html(`<h1>${response.firstName}, here's your Date Night Recipe</h1>`);
@@ -253,19 +253,37 @@ const handleDetails = function (event) {
     });
 };
 
-const handleRemove = function (event) {
+// const handleRemove = function (event) {
+//   event.preventDefault();
+//   const store = event.data;
+//   const id = store.item.id;
+
+//   api.remove(id, store.token)
+//     .then(() => {
+//       store.list = null; //invalidate cached list results
+//       return handleSearch(event);
+//     }).catch(err => {
+//       console.error(err);
+//     });
+// };
+
+const handleDelete = function (event) {
   event.preventDefault();
   const store = event.data;
-  const id = store.item.id;
+  const id = store.recipeData.id;
 
-  api.remove(id, store.token)
+  api.remove(id)
     .then(() => {
       store.list = null; //invalidate cached list results
-      return handleSearch(event);
+      store.view = 'create';
+      renderPage(store);
+      //return handleSearch(event);
     }).catch(err => {
       console.error(err);
     });
 };
+
+
 const handleViewCreate = function (event) {
   event.preventDefault();
   const store = event.data;
@@ -310,8 +328,10 @@ jQuery(function ($) {
   $('#search').on('submit', STORE, handleSearch);
   $('#edit').on('submit', STORE, handleUpdate);
 
+  $('body').on('click', '#delete', STORE, handleDelete);
+
   $('#result').on('click', '.detail', STORE, handleDetails);
-  $('#detail').on('click', '.remove', STORE, handleRemove);
+  //$('#detail').on('click', '.remove', STORE, handleRemove);
   $('#detail').on('click', '.edit', STORE, handleViewEdit);
 
   $(document).on('click', '.viewCreate', STORE, handleViewCreate);
