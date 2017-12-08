@@ -29,7 +29,7 @@ app.get('/movies', (req, res) => {
   MovieModel
     .find()
     .then(movies => {
-      //console.log(movies);
+      // console.log(movies);
       res.json(movies);
     });
 });
@@ -88,16 +88,28 @@ app.get('/recipes/:id', (req, res) => {
     .then(recipe => {
       //console.log(recipe);
       res.json(recipe);
-    });    
+    });
 });
 
 
 app.post('/recipes', (req, res) => {
+  // const requiredFields = ['firstName', 'email', 'zip'];
+  // for (let i = 0; i < requiredFields.length; i++) {
+  //   const field = requiredFields[i];
+  //   if (!(field in req.body)) {
+  //     const message = `Missing \`${field}\` in request body`;
+  //     console.error(message);
+  //     return res.status(400).send(message);
+  //   }
+  // }
   RecipeModel
     .create({ 'firstName': req.body.firstName, 'email': req.body.email, 'zip': req.body.zip })
     .then(created => {
-      //console.log('line 95', created);
-      res.json(created);
+      res.status(201).json(created);
+      // .catch(err => {
+      //   console.error(err);
+      //   res.status(500).json({ message: 'Internal Server Error' });
+      // });
     });
 });
 
@@ -105,29 +117,37 @@ app.post('/recipes', (req, res) => {
 app.put('/recipes/:id', (req, res) => {
   //console.log('line 103', req.body);
   RecipeModel
-    .findByIdAndUpdate(req.params.id, { $set: {
-      'movieId': req.body.movieId,
-      'restaurantId': req.body.restaurantId
-      // 'ratingComment': req.body.ratingComment, 
-      // 'rating': req.body.rating 
-    } }, { new: true })
+    .findByIdAndUpdate(req.params.id, {
+      $set: {
+        'movieId': req.body.movieId,
+        'restaurantId': req.body.restaurantId
+        // 'ratingComment': req.body.ratingComment, 
+        // 'rating': req.body.rating 
+      }
+    }, { new: true })
     .then(updated => {
-      //console.log('line 112', updated);
-      // res.json(updated);
+      console.log('line 112', updated);
+      res.status(200).json(updated);
     });
   //respond with entire database
-  RecipeModel
-    .find()
-    .then(recipes => res.json(recipes));
+  // RecipeModel
+  //   .find()
+  //   .then(recipes => res.status(204).json(recipes).end());
+  // .catch(err => {
+  //   console.log(err);
+  //   res.status(500).send({ error: 'Internal Server Error' });
+  // });
 });
 
 //after reviewing recipe, update document (after date night)
 app.put('/recipes/reviews/:id', (req, res) => {
   RecipeModel
-    .findByIdAndUpdate(req.params.id, { $set: {
-      'ratingComment': req.body.ratingComment, 
-      'rating': req.body.rating 
-    } }, { new: true })
+    .findByIdAndUpdate(req.params.id, {
+      $set: {
+        'ratingComment': req.body.ratingComment,
+        'rating': req.body.rating
+      }
+    }, { new: true })
     .then(updated => {
       //console.log(updated);
       // res.json(updated);
@@ -141,12 +161,21 @@ app.put('/recipes/reviews/:id', (req, res) => {
 app.delete('/recipes/:id', (req, res) => {
   RecipeModel
     .findOneAndRemove({ _id: req.params.id })
-    .then(deleted => {
-      console.log(deleted);
-      res.status(202).json(deleted);
+    .then(() => {
+      res.status(204).json({ message: 'recipe deleted' });
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ error: 'Server Error' });
     });
-  // res.send('deleted');
 });
+
+//Catch all endpoint for request to non-existent endpoint
+app.use('*', function (req, res) {
+  res.status(404).json({ message: 'Endpoint Not Found' });
+});
+
+
 
 let server;
 
