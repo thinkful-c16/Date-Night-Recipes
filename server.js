@@ -29,7 +29,7 @@ app.get('/movies', (req, res) => {
   MovieModel
     .find()
     .then(movies => {
-      console.log(movies);
+      // console.log(movies);
       res.json(movies);
     });
 });
@@ -103,9 +103,9 @@ app.post('/recipes', (req, res) => {
   //   }
   // }
   RecipeModel
-    .create({'firstName': req.body.firstName, 'email': req.body.email, 'zip': req.body.zip})
+    .create({ 'firstName': req.body.firstName, 'email': req.body.email, 'zip': req.body.zip })
     .then(created => {
-      res.json(created);
+      res.status(201).json(created);
       // .catch(err => {
       //   console.error(err);
       //   res.status(500).json({ message: 'Internal Server Error' });
@@ -126,13 +126,13 @@ app.put('/recipes/:id', (req, res) => {
       }
     }, { new: true })
     .then(updated => {
-      //console.log('line 112', updated);
-      // res.json(updated);
+      console.log('line 112', updated);
+      res.status(200).json(updated);
     });
   //respond with entire database
-  RecipeModel
-    .find()
-    .then(recipes => res.status(204).json(recipes).end());
+  // RecipeModel
+  //   .find()
+  //   .then(recipes => res.status(204).json(recipes).end());
   // .catch(err => {
   //   console.log(err);
   //   res.status(500).send({ error: 'Internal Server Error' });
@@ -161,12 +161,13 @@ app.put('/recipes/reviews/:id', (req, res) => {
 app.delete('/recipes/:id', (req, res) => {
   RecipeModel
     .findOneAndRemove({ _id: req.params.id })
-    .then(deleted => {
-      console.log(deleted);
-      res.status(204).json(deleted);
+    .then(() => {
+      res.status(204).json({ message: 'recipe deleted' });
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ error: 'Server Error' });
     });
-  // .catch(err => res.status(500).json({ message: 'Internal server error' }));
-  // res.send('deleted');
 });
 
 //Catch all endpoint for request to non-existent endpoint
