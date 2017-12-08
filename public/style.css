@@ -32,7 +32,8 @@ button {
 
 #search,
 #detail,
-#edit {
+#edit,
+#itsADate {
   display: none;
 }
 
@@ -41,6 +42,21 @@ button {
   text-align: center;
   flex-wrap: wrap;
 }
+
+.dateSchedule{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+#itsADate{
+  text-align: center;
+}
+
+.imgMovie, .imgRestaurant{
+  margin: 0 50px;
+}
+
 
 #result li {
   justify-content: space-between;

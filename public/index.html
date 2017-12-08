@@ -12,7 +12,7 @@
 </head>
 
 <body>
-	<h2>API Client</h2>
+	<h2>Date Night Recipe</h2>
 	<!-- <ul id="nav">
 		<li> </li>
 		<a href="" class="viewSearch">Select by Movie</a> |
@@ -21,8 +21,9 @@
 	</ul> -->
 
 	<form id="search" class="view">
-		<div id="result"></div>
-		<a href="" class="viewCreate">Create a Story</a>
+		<!-- show the movies here -->
+		<div id="result"></div>  
+		<!-- <a href="" class="viewCreate">Create a Story</a> -->
 	</form>
 
 	<section id="detail" class="view">
@@ -42,13 +43,8 @@
 
 			<form id="edit">
 				<div>
-					<!-- <label for="restaurant">Restaurant</label> -->
 					<span class="restaurant"></span>
 				</div>
-				<!-- <div>
-					<label for="comment">Comment</label>
-					<textarea rows="4" cols="50" name="comment"></textarea>
-				</div> -->
 				<button type="submit">Save my Date Night Recipe</button>
 			</form>
 
@@ -99,6 +95,14 @@
 			<button type="submit">Submit</button>
 		</fieldset>
 	</form>
+
+	<div id="itsADate" class="view">
+		<fieldset>
+			<legend>It's a Date</legend>
+			<div class="success"></div>
+			<div class="dateSchedule"></div>
+		</fieldset>
+	</div>
 
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script src="js/fetch.js"></script>

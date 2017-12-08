@@ -40,7 +40,7 @@ function normalizeResponseErrors(res) {
 var api = {
   search: function (query) {
     const url = buildUrl(MOVIES_URL, query);
-
+    console.log('search called');
     return fetch(url, {
       method: 'GET',
       headers: {
@@ -51,6 +51,7 @@ var api = {
   },
   details: function (id) {
     const url = buildUrl(`${MOVIES_URL}/${id}`);
+    console.log('details called');
 
     return fetch(url, {
       method: 'GET',
@@ -62,7 +63,8 @@ var api = {
   },
   create: function (document) {
     const url = buildUrl(`${RECIPES_URL}`);
-    
+    console.log('create called');
+
     return fetch(url, {
       method: 'POST',
       headers: {
@@ -72,13 +74,14 @@ var api = {
       body: document ? JSON.stringify(document) : null
     }).then(normalizeResponseErrors)
       .then(res => res.json());
-  },  
+  },
   update: function (document) {
     const url = buildUrl(`${RECIPES_URL}/${document.id}`);
-    
-    console.log('dev tools', document);
+    console.log('update called');
+    //console.log(url);
+    //console.log('dev tools', document);
 
-    return fetch(url, {
+    return fetch(url, {     //fetch always requires a body property on a put, post or delete method
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -88,9 +91,21 @@ var api = {
     }).then(normalizeResponseErrors)
       .then(res => res.json());
   },
+  confirm: function (id) {
+    const url = buildUrl(`${RECIPES_URL}/${id}`);
+    console.log('confirm called');
+    console.log(url);
+    return fetch(url, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json'
+      }
+    }).then(normalizeResponseErrors)
+      .then(res => res.json());
+  },
   remove: function (id) {
     const url = buildUrl(`${MOVIES_URL}/${id}`);
-
+    console.log('remove called');
     return fetch(url, {
       method: 'DELETE',
       headers: {

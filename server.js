@@ -12,7 +12,7 @@ mongoose.Promise = global.Promise;
 const { MovieModel, RecipeModel } = require('./models');
 
 const { DATABASE_URL, PORT } = require('./config');
-console.log(DATABASE_URL);
+//console.log(DATABASE_URL);
 
 // 1)XPull movies and recipes from database now instead of seed-data files
 // 2) Create HTML app views and populate with db data
@@ -29,31 +29,22 @@ app.get('/movies', (req, res) => {
   MovieModel
     .find()
     .then(movies => {
-      console.log(movies);
+      //console.log(movies);
       res.json(movies);
     });
 });
 
-app.post('/movies', (req, res) => {
-  res.json(movies);
-});
-
-app.get('/movies/:id', (req, res) => {
-  res.json(movies[req.params.id]);
-});
-
-// ### Backend
-// app.get('/yelp/search', (req, res) => {
-//   const {zip, cuisine} = req.query;
-//   const searchString = `https://api.yelp.com/.../search?location=${zip}&cuisine=${cuisine}`;
-//   axios
-//   .headers({})
-//   .get(searchString)
-//   .then(yelpRes => {
-//     res.status(200).send(yelpRes);
-//   })
+// app.post('/movies', (req, res) => {
+//   res.json(movies);
 // });
 
+app.get('/movies/:id', (req, res) => {
+  MovieModel
+    .findById(req.params.id)
+    .then(movie => {
+      res.json(movie);
+    });
+});
 
 // Yelp API proxy 
 app.get('/yelp/search', (req, res) => {
@@ -91,9 +82,13 @@ app.get('/recipes', (req, res) => {
 
 //display the recipe for the id provided from req.params.id
 app.get('/recipes/:id', (req, res) => {
+  //console.log(req.params);
   RecipeModel
     .findById(req.params.id)
-    .then(recipes => res.json(recipes));
+    .then(recipe => {
+      //console.log(recipe);
+      res.json(recipe);
+    });    
 });
 
 
@@ -101,17 +96,40 @@ app.post('/recipes', (req, res) => {
   RecipeModel
     .create({ 'firstName': req.body.firstName, 'email': req.body.email, 'zip': req.body.zip })
     .then(created => {
-      console.log(created);
+      //console.log('line 95', created);
       res.json(created);
     });
 });
 
-//after detail submit, update document
+//after selecting restaurant, update document (before date night)
 app.put('/recipes/:id', (req, res) => {
+  //console.log('line 103', req.body);
   RecipeModel
-    .findByIdAndUpdate(req.params.id, { $set: { 'ratingComment': req.body.ratingComment, 'rating': req.body.rating } }, { new: true })
+    .findByIdAndUpdate(req.params.id, { $set: {
+      'movieId': req.body.movieId,
+      'restaurantId': req.body.restaurantId
+      // 'ratingComment': req.body.ratingComment, 
+      // 'rating': req.body.rating 
+    } }, { new: true })
     .then(updated => {
-      console.log(updated);
+      //console.log('line 112', updated);
+      // res.json(updated);
+    });
+  //respond with entire database
+  RecipeModel
+    .find()
+    .then(recipes => res.json(recipes));
+});
+
+//after reviewing recipe, update document (after date night)
+app.put('/recipes/reviews/:id', (req, res) => {
+  RecipeModel
+    .findByIdAndUpdate(req.params.id, { $set: {
+      'ratingComment': req.body.ratingComment, 
+      'rating': req.body.rating 
+    } }, { new: true })
+    .then(updated => {
+      //console.log(updated);
       // res.json(updated);
     });
   //respond with entire database

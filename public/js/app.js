@@ -19,9 +19,9 @@ const renderPage = function (store) {
 const renderResults = function (store) {
   //console.log(store);
   const listItems = store.list.map((item) => {
-  //console.log(item);
-    return `<li id="${item.id}">
-                <a href="${item.id}" class="detail">
+    //console.log(item);
+    return `<li id="${item._id}">
+                <a href="${item._id}" class="detail">
                 <div>
                   <img src="${item.poster}" height="200" alt="${item.title}"
                 </div>
@@ -37,21 +37,27 @@ const renderEdit = function (store) {
   const item = store.item;
   el.find('[name=title]').val(item.Title);
   el.find('[name=content]').val(item.comment);
-}; 
+};
 
 const renderDetail = function (store) {
   const el = $('#detail');
+  store.movieId = store.item._id;
   const item = store.item;
+
+  store.movieData.movieImgURL = item.poster;
+  store.movieData.movieName = item.title;
+
+  //console.log(store);
   //make a call to Yelp with zip and cuisine
-  const searchZip = '30080';   //need to rquest zip from user
+  const searchZip = store.zip;
   const searchCuisine = item.pairedCuisine;
   const recommendationString = `We recommend the following ${searchCuisine} restaurants near you. Please select one:`;
-  
+
   $.ajax({                      //used $.ajax because $.getJSON doesn't allow you to add headers (even though we had to move the Yelp API call server-side due to CORS issue)
     method: 'GET',
     url: `http://localhost:8080/yelp/search?zip=${searchZip}&cuisine=${searchCuisine}`
-  } )
-    .done(function(response) {
+  })
+    .done(function (response) {
       //console.log(response);
       const restaurants = response;
       restaurants.forEach(restaurant => {
@@ -80,14 +86,14 @@ const renderDetail = function (store) {
         </div>
         </div>
         `;
+
         $('#edit').css('display', 'block');
         $('.restaurant').append(HTML);
         //
       });
-      
     })
-    .fail(function() {
-      console.log( 'error' );
+    .fail(function () {
+      console.log('error');
     });
 
   el.find('.title').text(item.title);
@@ -105,7 +111,7 @@ const handleSearch = function (event) {
       title: el.find('[name=title]').val()
     };
   }
-  api.search(query)       
+  api.search(query)
     .then(response => {
       store.list = response;
       renderResults(store);
@@ -125,14 +131,17 @@ const handleCreate = function (event) {
   const document = {
     firstName: el.find('[name=firstName]').val(),
     email: el.find('[name=email]').val(),
-    zip: el.find('[name=zipCode]').val()
+    zip: el.find('[name=zip]').val()
   };
 
   api.create(document)
     .then(response => {
-      console.log(response);
+      //console.log(response);
       store.item = response;
+      store.recipeData.recipeId = response._id;
+      store.zip = response.zip;
       store.list = null; //invalidate cached list results
+      //console.log(store);
       // renderDetail(store);
       // store.view = 'search';
       // renderPage(store);
@@ -145,24 +154,31 @@ const handleCreate = function (event) {
 const handleUpdate = function (event) {
   event.preventDefault();
   const store = event.data;
-  const el = $(event.target);
-  
-  function getChoice(){
-    for(let i = 0; i < 5; i++){
-      let choice = '';
-      if(el[0][i].checked){
-        return el[0][i].value;
-      }
-    }
-  }
+  const el = $('#edit').find('input:checked');
+  console.log(el);
 
-  const choice = getChoice();
+  // function getChoice() {
+  //   for (let i = 0; i < 5; i++) {
+  //     let choice = '';
+  //     if (el[0][i].checked) {
+  //       console.log(el[0][i]);
+  //       return el[0][i].value;
+  //     }
+  //   }
+  // }
+
+  const choice = el.val();
+  store.restaurantData.restaurantImgURL = el.next().find('img').attr('src');
+  store.restaurantData.restaurantName = el.parent().find('.restDetails').find('h3').text();
+  console.log(store.restaurantData.restaurantName);
 
   const document = {
-    //id = 0   need to capture the recipeId
-    movieId: store.item.id,   //this is the movie number, not the
+    id: store.recipeData.recipeId,
+    movieId: store.movieId,   //this is the movie number, not the
     restaurantId: choice
   };
+
+  store.recipeData = document;
 
   // const document = {
   //   id: store.item.id,
@@ -175,10 +191,41 @@ const handleUpdate = function (event) {
       store.item = response;
       store.list = null; //invalidate cached list results
       renderDetail(store);
-      store.view = 'detail';
+      store.view = 'itsADate';
       renderPage(store);
     }).catch(err => {
       console.error(err);
+    });
+
+  showFinalRecipe(store);
+};
+
+const showFinalRecipe = function (store) {
+  console.log(store);
+  api.confirm(store.recipeData.id)
+    .then(response => {
+      console.log(response);
+      const movieImgURL = store.movieData.movieImgURL;
+      const movieName = store.movieData.movieName;
+      const restaurantImgURL = store.restaurantData.restaurantImgURL;
+      const restaurantName = store.restaurantData.restaurantName;
+
+      const recipeHTML = `
+    <div class="imgMovie">
+      <img src="${movieImgURL}" width="200" height="295" alt="${movieName}">
+      <h3>${movieName}</h3>
+    </div>
+    <div class="imgRestaurant">
+      <img src="${restaurantImgURL}" width="200" height="295" alt="${restaurantName}">
+      <h3>${restaurantName}</h3>
+    </div>
+    `;
+
+      $('.success').html(`<h1>${response.firstName}, here's your Date Night Recipe</h1>`);
+      $('.dateSchedule').html(recipeHTML);
+    })
+    .catch(err => {
+      console.log(err);
     });
 };
 
@@ -248,6 +295,9 @@ jQuery(function ($) {
     query: {},          // search query values
     list: null,         // search result - array of objects (documents)
     item: null,         // currently selected document
+    recipeData: {},     // stores the user's recipe id 
+    movieData: {},
+    restaurantData: {}
   };
 
 
