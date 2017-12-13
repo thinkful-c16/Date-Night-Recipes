@@ -10,7 +10,6 @@ const { MovieModel, RecipeModel } = require('../models');
 const movies = require('../seed-data');
 const recipes = require('../recipe-seed-data');
 
-// chai.should();
 chai.use(chaiHttp);
 
 function tearDownDb() {
@@ -23,7 +22,6 @@ function tearDownDb() {
 }
 
 describe('apiMoviesResources', () => {
-
 
   before(function () {
     return runServer(config.TEST_DATABASE_URL, config.PORT);
@@ -40,7 +38,6 @@ describe('apiMoviesResources', () => {
   after(function () {
     return closeServer();
   });
-
 
   describe('GET endpoint', function () {
     it('should return all movies', function () {
@@ -92,57 +89,4 @@ describe('apiMoviesResources', () => {
         });
     });
   });
-  // describe('PUT endpoint', function () {
-  //   it('should update after selecting restaurant', function () {
-  //     const updateRecipe = {
-  //       movieId: '5a2ab71ab124dcd3aaa4a451',
-  //       restaurantId: 'south-city-kitchen-vinings-smyrna-2'
-  //     };
-  //     let testRecipe = '';
-  //     return RecipeModel
-  //       .findOne()
-  //       .then(function (recipe) {
-  //         console.log(recipe);
-  //         testRecipe = recipe.id;
-  //         return chai.request(app)
-  //           .put(`/recipes/${testRecipe}`)
-  //           .send(updateRecipe);
-  //       })
-  //       .then(function (res) {
-  //         res.should.have.status(204);
-  //         return RecipeModel.findById(testRecipe.id);
-  //       })
-  //       .then(function (recipe) {
-  //         recipe.movieId.should.equal(updateRecipe.movieId);
-  //         recipe.restaurantId.should.equal(updateRecipe.restaurantId);
-  //       });
-  //   });
-  // });
-  // describe('DELETE endpoint', function () {
-  //   it('should delete a recipe by id', function () {
-  //     let recipe;
-  //     return RecipeModel.find({title: 'Life Is Beautiful'}).then(function (_recipe) {
-  //       console.log('line 125', _recipe);
-  //       recipe = _recipe;
-  //       return chai.request(app).delete(`/recipes/${recipe.id}`);
-  //     })
-  //       .then(function (res) {
-  //         console.log('line 130', res);
-  //         res.should.have.status(204);
-  //         return RecipeModel.findById(recipe.id);
-  //       })
-  //       .then(function(_recipe) {
-  //         should.not.exist(_recipe);
-  //       });
-  //     // return chai.request(app)
-  //     //   .get('/recipes/:id')
-  //     //   .then(function (res) {
-  //     //     return chai.request(app)
-  //     //       .delete(`/recipes/${res.body.id}`);
-  //     //   })
-  //     //   .then(function (res) {
-  //     //     res.should.have.status(204);
-  //     //   });
-  //   });
-  // });
 });
