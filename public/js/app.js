@@ -56,7 +56,7 @@ const renderDetail = function (store) {
 
   $.ajax({                      //used $.ajax because $.getJSON doesn't allow you to add headers (even though we had to move the Yelp API call server-side due to CORS issue)
     method: 'GET',
-    url: `http://localhost:8080/yelp/search?zip=${searchZip}&cuisine=${searchCuisine}`
+    url: `/yelp/search?zip=${searchZip}&cuisine=${searchCuisine}`
   })
     .done(function (response) {
       //console.log(response);
