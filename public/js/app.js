@@ -40,7 +40,7 @@ const renderEdit = function (store) {
 };
 
 const renderDetail = function (store) {
-  console.log('renderDetail called');
+  //console.log('renderDetail called');
   const el = $('#detail');
   store.movieId = store.item._id;
   const item = store.item;
@@ -212,7 +212,7 @@ const showFinalRecipe = function (store) {
       <h3>${restaurantName}</h3>
     </div>
     `;
-      const postStr = $.post('recipes', {id: store.recipeData.id});
+    
       const nextStepsHTML = `
       <p>If this looks good, schedule below and we'll email you at <a href="mailto:${response.email}">${response.email}</a> two days after your date night to see if it was a winning recipe.</p>
       <form action="#">
@@ -286,12 +286,14 @@ const handleDelete = function (event) {
 
 const handleViewCreate = function (event) {
   event.preventDefault();
+  console.log('hello');
   const store = event.data;
   store.view = 'create';
   renderPage(store);
 };
 const handleViewList = function (event) {
   event.preventDefault();
+  console.log('hi list');
   const store = event.data;
   if (!store.list) {
     handleSearch(event);
